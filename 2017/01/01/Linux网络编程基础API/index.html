@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/01/01/Linux网络编程基础API/index.html">
 <meta property="og:site_name" content="陈小鱼的浴缸快来吧">
 <meta property="og:description" content="socket地址API主机字节序和网络字节序判断机器字节序代码(C语言版本)123456789101112131415161718192021222324252627#include &amp;lt;stdio.h&amp;gt;void byteorder()&amp;#123;	union	&amp;#123;		short value;		char union_bytes[sizeof(short)];	&amp;#125; te">
-<meta property="og:updated_time" content="2017-01-01T15:26:07.000Z">
+<meta property="og:updated_time" content="2017-01-01T15:44:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux高性能服务器编程之Linux网络编程基础API">
 <meta name="twitter:description" content="socket地址API主机字节序和网络字节序判断机器字节序代码(C语言版本)123456789101112131415161718192021222324252627#include &amp;lt;stdio.h&amp;gt;void byteorder()&amp;#123;	union	&amp;#123;		short value;		char union_bytes[sizeof(short)];	&amp;#125; te">
@@ -305,6 +305,12 @@
       
           
         <h4 id="socket地址API"><a href="#socket地址API" class="headerlink" title="socket地址API"></a>socket地址API</h4><h5 id="主机字节序和网络字节序"><a href="#主机字节序和网络字节序" class="headerlink" title="主机字节序和网络字节序"></a>主机字节序和网络字节序</h5><h6 id="判断机器字节序代码-C语言版本"><a href="#判断机器字节序代码-C语言版本" class="headerlink" title="判断机器字节序代码(C语言版本)"></a>判断机器字节序代码(C语言版本)</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">byteorder</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">union</span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">short</span> value;</div><div class="line">		<span class="keyword">char</span> union_bytes[<span class="keyword">sizeof</span>(<span class="keyword">short</span>)];</div><div class="line">	&#125; test;</div><div class="line">	test.value = <span class="number">0x0102</span>;</div><div class="line">	<span class="keyword">if</span> (( test.union_bytes[ <span class="number">0</span> ] == <span class="number">1</span>) &amp;&amp; ( test.union_bytes[ <span class="number">1</span> ] == <span class="number">2</span>))</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"big endian\n"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (( test.union_bytes[ <span class="number">0</span> ] == <span class="number">2</span>) &amp;&amp; test.union_bytes[ <span class="number">1</span> ] == <span class="number">1</span>)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"little endian\n"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span> </div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"unknown...\n"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	byteorder();</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>###### </p>
+<ul>
+<li>pc端现在采用小端字节序,故小端字节序又被称为主机字节序</li>
+<li>如果两端的字节序不一致,接收方总是采用大端字节序,所以接收端可以根据自身采用的字节序决定是否对接收到的数据进行转换,故大端字节序也称为网络字节序</li>
+<li>同一台机器上的两个进程也要考虑字节序(一个C语言编写,一个Java编写，Java虚拟机采用大端字节序)<br>Linux提供如下4个函数完成主机字节序和网络字节序的转换:<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#include &lt;netinet/in.h&gt;</div><div class="line">unsigned long int htonl( unsigned long int hostlong )</div><div class="line">unsigned short int htons( unsigned short int hostshort)</div><div class="line">unsigned long int ntohl( unsigned long int netlong)</div><div class="line">unsigned short int ntohs( unsigned short int netshort)</div><div class="line"># 长整型函数通常用来转换IP</div><div class="line"># 短整型函数用来转换端口号</div><div class="line"># 任何格式化的数据通过网络传输时,都应该使用这些函数转换字节序</div></pre></td></tr></table></figure></li>
+</ul>
 
       
     </div>
@@ -316,7 +322,7 @@
         <p><span>本文标题:</span><a href="/2017/01/01/Linux网络编程基础API/">Linux高性能服务器编程之Linux网络编程基础API</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">手抓饼</a></p>
         <p><span>发布时间:</span>2017-01-01, 22:43:29</p>
-        <p><span>最后更新:</span>2017-01-01, 23:26:07</p>
+        <p><span>最后更新:</span>2017-01-01, 23:44:53</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/01/01/Linux网络编程基础API/" title="Linux高性能服务器编程之Linux网络编程基础API">http://yoursite.com/2017/01/01/Linux网络编程基础API/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/01/01/Linux网络编程基础API/　　作者: 手抓饼" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
