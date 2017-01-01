@@ -186,7 +186,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/后台/">后台</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学/">大学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/整理/">整理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构/">架构</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux网络编程/">Linux网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/后台/">后台</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学/">大学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/整理/">整理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构/">架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/游双/">游双</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/阅读笔记/">阅读笔记</a></li></ul>
                     </div>
                 </section>
                 
@@ -266,6 +266,66 @@
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-Linux网络编程基础API" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/01/Linux网络编程基础API/" class="article-date">
+      <time datetime="2017-01-01T14:43:29.000Z" itemprop="datePublished">2017-01-01</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/01/Linux网络编程基础API/">Linux高性能服务器编程之Linux网络编程基础API</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="socket地址API"><a href="#socket地址API" class="headerlink" title="socket地址API"></a>socket地址API</h3><h4 id="主机字节序和网络字节序"><a href="#主机字节序和网络字节序" class="headerlink" title="主机字节序和网络字节序"></a>主机字节序和网络字节序</h4><h5 id="判断机器字节序代码-C语言版本"><a href="#判断机器字节序代码-C语言版本" class="headerlink" title="判断机器字节序代码(C语言版本)"></a>判断机器字节序代码(C语言版本)</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">byteorder</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">union</span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">short</span> value;</div><div class="line">		<span class="keyword">char</span> union_bytes[<span class="keyword">sizeof</span>(<span class="keyword">short</span>)];</div><div class="line">	&#125; test;</div><div class="line">	test.value = <span class="number">0x0102</span>;</div><div class="line">	<span class="keyword">if</span> (( test.union_bytes[ <span class="number">0</span> ] == <span class="number">1</span>) &amp;&amp; ( test.union_bytes[ <span class="number">1</span> ] == <span class="number">2</span>))</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"big endian\n"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (( test.union_bytes[ <span class="number">0</span> ] == <span class="number">2</span>) &amp;&amp; test.union_bytes[ <span class="number">1</span> ] == <span class="number">1</span>)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"little endian\n"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span> </div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"unknown...\n"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	byteorder();</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux网络编程/">Linux网络编程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游双/">游双</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/阅读笔记/">阅读笔记</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-后台架构剖析-md" class="article article-type-post" itemscope itemprop="blogPost">
   
