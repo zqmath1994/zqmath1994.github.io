@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>后台架构剖析 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="后台架构剖析1.聊天APP后台架构1).网络特性及解决方案a.弱网络性&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;弱网络性指手机不断移动(例如地铁、汽车)的特性,处于快速移动中，出现信号不稳、响应时间过长、出现丢包等情况。
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;因此针对弱网络环境,开发者设计协议的时候必须考虑尽量减少数据往返次数，降低耗">
+<meta property="og:type" content="article">
+<meta property="og:title" content="后台架构剖析">
+<meta property="og:url" content="http://yoursite.com/2017/01/01/后台架构剖析-md/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="后台架构剖析1.聊天APP后台架构1).网络特性及解决方案a.弱网络性&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;弱网络性指手机不断移动(例如地铁、汽车)的特性,处于快速移动中，出现信号不稳、响应时间过长、出现丢包等情况。
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;因此针对弱网络环境,开发者设计协议的时候必须考虑尽量减少数据往返次数，降低耗">
+<meta property="og:image" content="http://i1.piimg.com/567571/22fc549f9f87fe63.jpg">
+<meta property="og:image" content="http://i1.piimg.com/567571/9f25f7d1cad8a0fd.jpg">
+<meta property="og:image" content="http://i1.piimg.com/567571/b539a974745dc3c2.jpg">
+<meta property="og:image" content="http://i1.piimg.com/567571/7bb404665da4604c.png">
+<meta property="og:updated_time" content="2017-01-01T12:57:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="后台架构剖析">
+<meta name="twitter:description" content="后台架构剖析1.聊天APP后台架构1).网络特性及解决方案a.弱网络性&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;弱网络性指手机不断移动(例如地铁、汽车)的特性,处于快速移动中，出现信号不稳、响应时间过长、出现丢包等情况。
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;因此针对弱网络环境,开发者设计协议的时候必须考虑尽量减少数据往返次数，降低耗">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/22fc549f9f87fe63.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-后台架构剖析-md" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/01/后台架构剖析-md/" class="article-date">
+  <time datetime="2017-01-01T12:47:15.000Z" itemprop="datePublished">2017-01-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      后台架构剖析
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="后台架构剖析"><a href="#后台架构剖析" class="headerlink" title="后台架构剖析"></a>后台架构剖析</h3><h4 id="1-聊天APP后台架构"><a href="#1-聊天APP后台架构" class="headerlink" title="1.聊天APP后台架构"></a>1.聊天APP后台架构</h4><h5 id="1-网络特性及解决方案"><a href="#1-网络特性及解决方案" class="headerlink" title="1).网络特性及解决方案"></a>1).网络特性及解决方案</h5><h6 id="a-弱网络性"><a href="#a-弱网络性" class="headerlink" title="a.弱网络性"></a>a.弱网络性</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;弱网络性指手机不断移动(例如地铁、汽车)的特性,处于快速移动中，出现信号不稳、响应时间过长、出现丢包等情况。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此针对弱网络环境,开发者设计协议的时候必须考虑尽量减少数据往返次数，降低耗时。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于弱网络性，App以长连接的形式连接服务器，可能出现App和服务器连接忽然中断的情况，而且这种情况无法通过连接端口的异常判断。例如当地铁高速行驶的时候网络中断，App无法向服务器的端口发送断开的信息，服务器还以为App一直保持连接，这种现象称为TCP half-open</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TCP half-open的危害:</p>
+<ul>
+<li>占用服务器资源(服务器维持连接耗费资源)</li>
+<li>发送消息的异常</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有效防止TCP half-open的方法是使用应用层心跳包：在App和服务器保持连接过程中，App在规定时间间隔内向服务器发送一个数据(为节省流量，数据可以是单字节字符，因为数据是隔一定时间发送一次，这种数据被形象的称为”心跳数据”)。对于未收到心跳数据的连接，服务器主动断开连接。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;服务器检查App的连接有三种方式:</p>
+<ol>
+<li><p>服务器记录每个连接收到心跳包的最后时间，每隔一段时间检查所有连接，若某个连接最后收到心跳包时间减去当前时间大于超时时间，断开连接。这种方式主要缺点是需要同时检查所有连接，如果连接数量过大，检查连接是对系统的性能影响大。</p>
+</li>
+<li><p>服务器为每一个连接建立一个定时器，到了规定的超时时间没有收到心跳包定时器就触发，把当前连接断开，如果收到心跳包，就重置定时器，不断重复过程。这种方法主要缺点，为每一个连接设置独立定时器，如果连接数量过大，会建立大量定时器，耗费系统资源。</p>
+</li>
+<li><p>这种方式是方式1和方式2的折中，称为时间轮片。按照超时时间的长短，每秒设置一个桶，如果超时时间为60秒就设置60个桶，60个桶组成一个循环队列，第一个桶放一秒后将要超时的连接，第二个桶放置两秒后将要超时的连接，每一个连接一收到心跳包就把自己放到第60个桶，然后每秒的定时器把第一个桶中的连接断开，把这个空桶放到队尾。这种服务器检查App的连接方式，好处是不需要检查所有的连接，节省大量的系统资源。</p>
+</li>
+</ol>
+<h6 id="b-对流量敏感性"><a href="#b-对流量敏感性" class="headerlink" title="b.对流量敏感性"></a>b.对流量敏感性</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非Wi-Fi环境下用户使用手机流量上网，对流量敏感。</p>
+<h5 id="2-协议"><a href="#2-协议" class="headerlink" title="2).协议"></a>2).协议</h5><h6 id="a-协议要求"><a href="#a-协议要求" class="headerlink" title="a.协议要求"></a>a.协议要求</h6><ul>
+<li>简化系统设计</li>
+<li>提供可靠高效的消息传输</li>
+<li>易于扩展需求</li>
+</ul>
+<h6 id="b-常用协议"><a href="#b-常用协议" class="headerlink" title="b.常用协议"></a>b.常用协议</h6><ul>
+<li><p>XMPP:基于XML的消息协议，曾被广泛应用于Gtalk、Facebook的聊天服务<br><br>优点:XAMP协议有大量网络资料和成熟开源模块，易于移动端集成。<br><br>缺点：耗费流量 <br><br>举例子:XMPP添加好友</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">iq</span> <span class="attr">id</span>=<span class="string">"rostersetl"</span> <span class="attr">type</span>=<span class="string">"set"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">query</span> <span class="attr">XMLns</span>=<span class="string">"jabber:iq:roster"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">item</span> <span class="attr">jid</span>=<span class="string">"user@jabbercn.org"</span> <span class="attr">name</span>=<span class="string">"user"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">query</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">iq</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">presence</span> <span class="attr">from</span>=<span class="string">"contact@rooyee.biz"</span> <span class="attr">to</span>=<span class="string">user@jabbercn.org</span> <span class="attr">type</span>=<span class="string">"subscribe"</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>MQTT:IBM开发的聊天协议，一个简单的消息协议</p>
+</li>
+<li>类ActivitySync:微信实现的协议，省流量，性能高，私有协议，IM所有功能自己实现。</li>
+</ul>
+<h6 id="c-常用开源服务器"><a href="#c-常用开源服务器" class="headerlink" title="c.常用开源服务器"></a>c.常用开源服务器</h6><ul>
+<li>Ejobberd：Erlang语言开发，成熟稳定，支持集群，支持多进程、并发。</li>
+<li>Openfire：Java语言开发，成熟稳定，插件多，但对内存要求高，并发低，集群性能弱。</li>
+</ul>
+<h6 id="d-tcp协议粘包问题及解决方案"><a href="#d-tcp协议粘包问题及解决方案" class="headerlink" title="d.tcp协议粘包问题及解决方案"></a>d.tcp协议粘包问题及解决方案</h6><ul>
+<li>问题的由来:App的通信协议一般使用TCP协议，接收端存在缓冲区。</li>
+<li>问题案例：假设用户缓存区大小为15字节，当第一个数据包(10字节)和第二个数据包(10个字节)到达接收端，根据缓冲区大小取数据15字节，这时候取出数据包含第一个数据包和第二个数据包，产生粘包问题。(例如第一个数据包为”1234567890”，第二个数据包为”0123456789”),取出数据为”123456789001234”</li>
+<li>解决方案：制定合理的协议格式，在每个数据包中标明包的长度。</li>
+</ul>
+<p>one. MySQL协议格式<br><br>MySQL协议中一个数据包的前3个字节是数据包长度，第4个字节是数据包的序列号，剩下字节是数据。<br></p>
+<p>two. Redis 协议格式(Redis协议是以CR LF结尾的)<br><br>Redis协议格式如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">*参数个数 CR LF</div><div class="line">$第一个参数的字符串占用字节数 CR LF</div><div class="line">参数数据 CR LF</div><div class="line">......</div><div class="line">$第N个参数的字符串占用字节数 CR LF</div><div class="line">参数数据 CR LF</div></pre></td></tr></table></figure></p>
+<p>举例子(Redis命令:”set name jeff”):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*3\r\n$3\r\n\set\r\n\$4\r\n\name\$4\r\n\jeff\r\n</div></pre></td></tr></table></figure></p>
+<h6 id="e-丢包情况处理"><a href="#e-丢包情况处理" class="headerlink" title="e.丢包情况处理"></a>e.丢包情况处理</h6><p>1.问题的由来：由于移动物联网的弱网络性，经常出现丢包的情况。<br>需要处理的问题：</p>
+<ul>
+<li>怎么确定客户端是否接收消息?</li>
+<li>怎么确定需要重发哪些消息?</li>
+</ul>
+<p>2.解决方案：</p>
+<ul>
+<li>基于队列的消息协议(二次握手)</li>
+</ul>
+<p>传统的IM协议是基于队列的消息发送和反馈机制。<br><br>服务器按照顺序把队列中的消息依次发给客户端,当客户端收到消息后给服务端发送”确认收到”的应答,如果过了一段时间还没有收到客户端的应答,就重发该消息。<br><br>这样就存在两个问题：</p>
+<p>one.如果客户端已收到消息且发送了”确认收到”的应答，网络中断，造成服务器收不到应答，服务器重发，导致客户端收到重复的消息。</p>
+<p>two.每条消息都需要应答极其费时间，服务器要维护每个消息的状态也容易出错。</p>
+<ul>
+<li>基于版本号的消息协议<br><img src="http://i1.piimg.com/567571/22fc549f9f87fe63.jpg" alt="基于版本号的消息协议介绍"><br><img src="http://i1.piimg.com/567571/9f25f7d1cad8a0fd.jpg" alt="基于版本号的消息交互"></li>
+</ul>
+<h6 id="f-非文本文件传送"><a href="#f-非文本文件传送" class="headerlink" title="f.非文本文件传送"></a>f.非文本文件传送</h6><ul>
+<li>发送图片、声音等文件，方法是先上传到服务器，然后把URL采用纯文本的方式发送数据。</li>
+<li>实例说明：<br><img src="http://i1.piimg.com/567571/b539a974745dc3c2.jpg" alt="IM非文本信息处理"></li>
+</ul>
+<h5 id="3-后台整体架构设计"><a href="#3-后台整体架构设计" class="headerlink" title="3).后台整体架构设计"></a>3).后台整体架构设计</h5><h6 id="a-连接层"><a href="#a-连接层" class="headerlink" title="a.连接层"></a>a.连接层</h6><ul>
+<li>作用：保持App与服务层之间的连接，把消息通过队列转发到逻辑层处理。</li>
+<li>注意要点：连接层服务器要很少重启，一旦重启造成大量App断线，短时间内重连服务器。服务器一瞬间大量连接请求引发类似DDOS攻击的现象。防止这类现象出现的机制：当连接层服务器准备重启的时候，发送一条消息到连接着这台服务器的App，让其重连到别的服务器。</li>
+<li>动态分配接入点方案：App访问接入点服务器，接入点服务器根据各个连接服务器的负载等因素，综合计算，返回一个连接服务器的IP给App，App通过IP连接服务器。如果App因为网络原因无法连接接入点服务器，可以预埋IP，让App连接上默认的连接服务器。<br><br><img src="http://i1.piimg.com/567571/7bb404665da4604c.png" alt="动态分配接入点方案实例"></li>
+</ul>
+<h6 id="b-业务层"><a href="#b-业务层" class="headerlink" title="b.业务层"></a>b.业务层</h6><ul>
+<li>验证模块:验证用户信息</li>
+<li>路由模块:连接服务器的集群,包含了数量众多的服务器，例如当用户A向用户B发送消息，两个用户的连接不一定是一个服务器，因此需要通过路由模块判断用户所在的服务器。群聊功能要在这个模块实现”订阅/发布”关系。</li>
+<li>统计模块:统计各种信息，例如总连接数、每秒发送消息数、总用户数、Android客户端连接数、iOS客户端连接数等等。</li>
+<li>数据存储模块:存储消息、统计信息、用户身份信息等</li>
+<li>连接层通过队列向业务层进行消息传递，业务层不断从队列中取出消息进行相关的处理，使用队列后，业务层重启程序时，对用户影响最小，因为所要处理的消息存储在队列中，重启不会造成消息丢失。</li>
+</ul>
+<h6 id="c-持久层"><a href="#c-持久层" class="headerlink" title="c.持久层"></a>c.持久层</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该层提供数据存取服务，数据包含用户的身份信息、消息、统计信息等。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;根据不同数据对存取速度的不同要求，可使用不同的软件存储不同的业务数据。例如用户身份信息这种高频读写的数据，可存储在Redis、Memcached等内存数据库中。</p>
+<h6 id="d-工作流程-以老公向老婆发送”我爱你”为例"><a href="#d-工作流程-以老公向老婆发送”我爱你”为例" class="headerlink" title="d.工作流程(以老公向老婆发送”我爱你”为例)"></a>d.工作流程(以老公向老婆发送”我爱你”为例)</h6><ul>
+<li>老公向连接服务器1发送消息(里面包含老婆的唯一标识和内容”我爱你”)</li>
+<li>连接服务器1接收该消息后向老公返回一个应答，同时队列把消息传递到业务层</li>
+<li>业务层的验证模块验证老公的身份信息，验证完成后通过路由模块把消息传递给老婆所在的服务器为连接服务器2，把消息传递到连接服务器2从而发送到老婆的手机上</li>
+<li>业务层把消息传递给老婆时，对相关的消息进行统计，同时数据存储模块把数据持久化</li>
+</ul>
+<h4 id="2-社交APP后台架构"><a href="#2-社交APP后台架构" class="headerlink" title="2.社交APP后台架构"></a>2.社交APP后台架构</h4><h5 id="1-基本表结构"><a href="#1-基本表结构" class="headerlink" title="1).基本表结构"></a>1).基本表结构</h5><p>#####<br>2).推拉模式</p>
+<h6 id="a-推模式"><a href="#a-推模式" class="headerlink" title="a.推模式"></a>a.推模式</h6><h6 id="b-拉模式"><a href="#b-拉模式" class="headerlink" title="b.拉模式"></a>b.拉模式</h6><h6 id="c-推拉模式总结"><a href="#c-推拉模式总结" class="headerlink" title="c.推拉模式总结"></a>c.推拉模式总结</h6><h6 id="d-微博中的应用"><a href="#d-微博中的应用" class="headerlink" title="d.微博中的应用"></a>d.微博中的应用</h6><h5 id="3-数据库架构"><a href="#3-数据库架构" class="headerlink" title="3).数据库架构"></a>3).数据库架构</h5><h6 id="a-自增id"><a href="#a-自增id" class="headerlink" title="a.自增id"></a>a.自增id</h6><h6 id="b-分表分库策略"><a href="#b-分表分库策略" class="headerlink" title="b.分表分库策略"></a>b.分表分库策略</h6><h5 id="4-缓存架构"><a href="#4-缓存架构" class="headerlink" title="4).缓存架构"></a>4).缓存架构</h5><h6 id="a-分布式缓存"><a href="#a-分布式缓存" class="headerlink" title="a.分布式缓存"></a>a.分布式缓存</h6><h6 id="b-主从缓存"><a href="#b-主从缓存" class="headerlink" title="b.主从缓存"></a>b.主从缓存</h6><h6 id="c-防止缓存失效措施"><a href="#c-防止缓存失效措施" class="headerlink" title="c.防止缓存失效措施"></a>c.防止缓存失效措施</h6><h4 id="3-LBS-APP后台架构"><a href="#3-LBS-APP后台架构" class="headerlink" title="3.LBS APP后台架构"></a>3.LBS APP后台架构</h4><h5 id="1-地理坐标处理及坐标系认识"><a href="#1-地理坐标处理及坐标系认识" class="headerlink" title="1).地理坐标处理及坐标系认识"></a>1).地理坐标处理及坐标系认识</h5><h5 id="2-查找附件的人功能"><a href="#2-查找附件的人功能" class="headerlink" title="2).查找附件的人功能"></a>2).查找附件的人功能</h5><h6 id="a-MySql空间数据库"><a href="#a-MySql空间数据库" class="headerlink" title="a.MySql空间数据库"></a>a.MySql空间数据库</h6><h6 id="b-geohash编码"><a href="#b-geohash编码" class="headerlink" title="b.geohash编码"></a>b.geohash编码</h6><h6 id="c-MongoDB地理位置查询功能"><a href="#c-MongoDB地理位置查询功能" class="headerlink" title="c.MongoDB地理位置查询功能"></a>c.MongoDB地理位置查询功能</h6><h5 id="3-基于MongoDB的LBS后台架构"><a href="#3-基于MongoDB的LBS后台架构" class="headerlink" title="3).基于MongoDB的LBS后台架构"></a>3).基于MongoDB的LBS后台架构</h5><h6 id="a-副本集架构"><a href="#a-副本集架构" class="headerlink" title="a.副本集架构"></a>a.副本集架构</h6><h6 id="b-分片架构"><a href="#b-分片架构" class="headerlink" title="b.分片架构"></a>b.分片架构</h6><h4 id="4-推送服务器后台架构"><a href="#4-推送服务器后台架构" class="headerlink" title="4.推送服务器后台架构"></a>4.推送服务器后台架构</h4><h5 id="1-Android推送-类似Gopush-Cluster架构"><a href="#1-Android推送-类似Gopush-Cluster架构" class="headerlink" title="1).    Android推送 (类似Gopush-Cluster架构)"></a>1).    Android推送 (类似Gopush-Cluster架构)</h5><h6 id="a-App连接推送服务器的流程"><a href="#a-App连接推送服务器的流程" class="headerlink" title="a.App连接推送服务器的流程"></a>a.App连接推送服务器的流程</h6><h6 id="b-后台推送消息到App的流程"><a href="#b-后台推送消息到App的流程" class="headerlink" title="b.后台推送消息到App的流程"></a>b.后台推送消息到App的流程</h6><h6 id="c-App获取离线消息的流程"><a href="#c-App获取离线消息的流程" class="headerlink" title="c.App获取离线消息的流程"></a>c.App获取离线消息的流程</h6><h5 id="2-iOS推送-基于APNS"><a href="#2-iOS推送-基于APNS" class="headerlink" title="2).iOS推送(基于APNS)"></a>2).iOS推送(基于APNS)</h5><h6 id="a-APNS原理"><a href="#a-APNS原理" class="headerlink" title="a.APNS原理"></a>a.APNS原理</h6><h6 id="b-APNS推送协议分析"><a href="#b-APNS推送协议分析" class="headerlink" title="b.APNS推送协议分析"></a>b.APNS推送协议分析</h6><h6 id="c-iOS推送服务器架构"><a href="#c-iOS推送服务器架构" class="headerlink" title="c.iOS推送服务器架构"></a>c.iOS推送服务器架构</h6><h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/01/后台架构剖析-md/" data-id="cixenxpkh0000rl3tdsup6eab" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/后台/">后台</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学/">大学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/整理/">整理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/架构/">架构</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/后台/">后台</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学/">大学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/整理/">整理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构/">架构</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/大学/" style="font-size: 10px;">大学</a> <a href="/tags/整理/" style="font-size: 10px;">整理</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/01/01/后台架构剖析-md/">后台架构剖析</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
