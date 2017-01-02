@@ -15,12 +15,16 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="陈小鱼的浴缸快来吧">
-<meta property="og:url" content="https://zqmath1994.github.io/archives/index.html">
+<meta name="description" content="Spring Boot实战读书笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sping Boot实战之Spring基础">
+<meta property="og:url" content="https://zqmath1994.github.io/2017/01/02/Spring基础/index.html">
 <meta property="og:site_name" content="陈小鱼的浴缸快来吧">
+<meta property="og:description" content="Spring Boot实战读书笔记">
+<meta property="og:updated_time" content="2017-01-02T16:25:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="陈小鱼的浴缸快来吧">
+<meta name="twitter:title" content="Sping Boot实战之Spring基础">
+<meta name="twitter:description" content="Spring Boot实战读书笔记">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -52,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives | 陈小鱼的浴缸快来吧</title>
+<title>Sping Boot实战之Spring基础 | 陈小鱼的浴缸快来吧</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -62,8 +66,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
-        isArchive: true,
+        isPost: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -260,155 +264,175 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-Spring基础" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/01/02/Spring基础/" class="archive-article-date">
-      <time datetime="2017-01-02T15:55:02.000Z" itemprop="datePublished">01-02</time>
+    <div class="article-meta">
+      <a href="/2017/01/02/Spring基础/" class="article-date">
+      <time datetime="2017-01-02T15:55:02.000Z" itemprop="datePublished">2017-01-02</time>
 </a>
 
 
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/02/Spring基础/">Sping Boot实战之Spring基础</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Sping Boot实战之Spring基础
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 
-          
+        
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-EE/">Java EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="Spring-基础"><a href="#Spring-基础" class="headerlink" title="Spring 基础"></a>Spring 基础</h2><h4 id="spring概述"><a href="#spring概述" class="headerlink" title="spring概述"></a>spring概述</h4><h5 id="Sping简史"><a href="#Sping简史" class="headerlink" title="Sping简史"></a>Sping简史</h5><ul>
+<li>XML配置的Bean,XML配置文件散乱到不同的配置文件里</li>
+<li>JDK 1.5开始有注解功能,Spring 提供了声明的Bean注解(如@Component、@Service)，工业界方案:应用的基本配置采用XML,业务配置采用注解</li>
+<li>从Spring 3.x到现在,Spring提供了Java的配置的能力<h4 id="Spring概述"><a href="#Spring概述" class="headerlink" title="Spring概述"></a>Spring概述</h4>Spring框架主要提供了IoC容器、AOP、数据访问、Web开发、消息、测试等相关的技术支持<h5 id="Spring的模块"><a href="#Spring的模块" class="headerlink" title="Spring的模块"></a>Spring的模块</h5><h6 id="核心容器-Core-Container"><a href="#核心容器-Core-Container" class="headerlink" title="核心容器(Core Container)"></a>核心容器(Core Container)</h6></li>
+<li>Spring-Core: 核心工具类,Spring其他模块大量使用Spring;</li>
+<li>Spring-Beans: Spring定义Bean的支持</li>
+<li>Spring-Context: 运行时的Spring容器</li>
+<li>Spring-Context-Support: Spring容器对第三方包的集成支持</li>
+<li>Spring-Expression: 使用表达式语言在运行时查询和操作对象<h5 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h5></li>
+<li>Spring-AOP: 基于代理的AOP支持</li>
+<li>Spring-Aspects: 基于AspectJ的AOP支持<h5 id="消息-Messaging"><a href="#消息-Messaging" class="headerlink" title="消息(Messaging)"></a>消息(Messaging)</h5></li>
+</ul>
+
+      
+    </div>
+    
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/01/02/通过创建新的镜像保存Docker容器状态/" class="archive-article-date">
-      <time datetime="2017-01-02T07:42:20.000Z" itemprop="datePublished">01-02</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/02/通过创建新的镜像保存Docker容器状态/">通过创建新的镜像保存Docker容器状态</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/云计算/">云计算</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/虚拟化/">虚拟化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/运维/">运维</a></li></ul>
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/01/02/Spring基础/">Sping Boot实战之Spring基础</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">手抓饼</a></p>
+        <p><span>发布时间:</span>2017-01-02, 23:55:02</p>
+        <p><span>最后更新:</span>2017-01-03, 00:25:35</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/01/02/Spring基础/" title="Sping Boot实战之Spring基础">https://zqmath1994.github.io/2017/01/02/Spring基础/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://zqmath1994.github.io/2017/01/02/Spring基础/　　作者: 手抓饼" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/01/02/通过创建新的镜像保存Docker容器状态/">
+                    通过创建新的镜像保存Docker容器状态
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/01/01/Linux网络编程基础API/" class="archive-article-date">
-      <time datetime="2017-01-01T14:43:29.000Z" itemprop="datePublished">01-01</time>
-</a>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-基础"><span class="toc-number">1.</span> <span class="toc-text">Spring 基础</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#spring概述"><span class="toc-number">1.0.1.</span> <span class="toc-text">spring概述</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Sping简史"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">Sping简史</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spring概述"><span class="toc-number">1.0.2.</span> <span class="toc-text">Spring概述</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Spring的模块"><span class="toc-number">1.0.2.1.</span> <span class="toc-text">Spring的模块</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#核心容器-Core-Container"><span class="toc-number">1.0.2.1.1.</span> <span class="toc-text">核心容器(Core Container)</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#AOP"><span class="toc-number">1.0.2.2.</span> <span class="toc-text">AOP</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#消息-Messaging"><span class="toc-number">1.0.2.3.</span> <span class="toc-text">消息(Messaging)</span></a></li></ol></li></ol></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
         </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/01/Linux网络编程基础API/">Linux高性能服务器编程之Linux网络编程基础API</a>
-    </h1>
-  
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Sping Boot实战之Spring基础　| 陈小鱼的浴缸快来吧　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
 
-        <div class="article-info info-on-archive">
-          
+    
+</div>
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux网络编程/">Linux网络编程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游双/">游双</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/阅读笔记/">阅读笔记</a></li></ul>
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/01/02/通过创建新的镜像保存Docker容器状态/" title="下一篇: 通过创建新的镜像保存Docker容器状态">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/01/01/后台架构剖析-md/" class="archive-article-date">
-      <time datetime="2017-01-01T12:47:15.000Z" itemprop="datePublished">01-01</time>
-</a>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/Spring基础/">Sping Boot实战之Spring基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/通过创建新的镜像保存Docker容器状态/">通过创建新的镜像保存Docker容器状态</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/Linux网络编程基础API/">Linux高性能服务器编程之Linux网络编程基础API</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/后台架构剖析-md/">后台架构剖析</a></li></ul>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/01/后台架构剖析-md/">后台架构剖析</a>
-    </h1>
-  
 
-        <div class="article-info info-on-archive">
-          
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/后台/">后台</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学/">大学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/整理/">整理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/架构/">架构</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
