@@ -15,13 +15,16 @@
 
 
 
+<meta name="description" content="docker commit 创建新的镜像保存容器状态">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过创建新的镜像保存Docker容器状态">
 <meta property="og:url" content="https://zqmath1994.github.io/2017/01/02/通过创建新的镜像保存Docker容器状态/index.html">
 <meta property="og:site_name" content="陈小鱼的浴缸快来吧">
-<meta property="og:updated_time" content="2017-01-02T07:42:20.000Z">
+<meta property="og:description" content="docker commit 创建新的镜像保存容器状态">
+<meta property="og:updated_time" content="2017-01-02T07:54:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过创建新的镜像保存Docker容器状态">
+<meta name="twitter:description" content="docker commit 创建新的镜像保存容器状态">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -133,13 +136,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>Menu</li>
-                        <li>Tags</li>
+                        <li>菜单</li>
+                        <li>标签</li>
                         
-                        <li>Friends</li>
+                        <li>友情链接</li>
                         
                         
-                        <li>About Me</li>
+                        <li>关于我</li>
                         
                     </ul>
                 </div>
@@ -182,7 +185,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux网络编程/">Linux网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/后台/">后台</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学/">大学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/整理/">整理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构/">架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/游双/">游双</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/阅读笔记/">阅读笔记</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux网络编程/">Linux网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/云计算/">云计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/后台/">后台</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学/">大学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/整理/">整理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构/">架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/游双/">游双</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟化/">虚拟化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/阅读笔记/">阅读笔记</a></li></ul>
                     </div>
                 </section>
                 
@@ -259,7 +262,7 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap"><article id="post-通过创建新的镜像保存Docker容器状态" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -290,6 +293,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/云计算/">云计算</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/虚拟化/">虚拟化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/运维/">运维</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -297,7 +304,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        
+        <h2 id="通过创建新的镜像保存Docker容器状态"><a href="#通过创建新的镜像保存Docker容器状态" class="headerlink" title="通过创建新的镜像保存Docker容器状态"></a>通过创建新的镜像保存Docker容器状态</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">docker commit 容器id 容器image名称</div><div class="line">docker stop 容器id</div><div class="line">docker rm 容器id</div><div class="line"><span class="comment"># 查看容器id</span></div><div class="line">docker ps <span class="_">-a</span></div><div class="line"><span class="comment"># 查看容器images名称</span></div><div class="line">docker images</div><div class="line"><span class="comment"># 用保存的的镜像,启动一个新的容器</span></div><div class="line">docker run <span class="_">-d</span> -p 端口号:22 容器image名称 /usr/sbin/sshd -D</div><div class="line"><span class="comment"># ssh 登录容器</span></div><div class="line">ssh root@localhost -p 端口号</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -305,17 +312,17 @@
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2017/01/02/通过创建新的镜像保存Docker容器状态/">通过创建新的镜像保存Docker容器状态</a></p>
-        <p><span>Author:</span><a href="/" title="Back to Homepage">手抓饼</a></p>
-        <p><span>Created:</span>2017-01-02, 15:42:20</p>
-        <p><span>Updated:</span>2017-01-02, 15:42:20</p>
+        <p><span>本文标题:</span><a href="/2017/01/02/通过创建新的镜像保存Docker容器状态/">通过创建新的镜像保存Docker容器状态</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">手抓饼</a></p>
+        <p><span>发布时间:</span>2017-01-02, 15:42:20</p>
+        <p><span>最后更新:</span>2017-01-02, 15:54:10</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2017/01/02/通过创建新的镜像保存Docker容器状态/" title="通过创建新的镜像保存Docker容器状态">https://zqmath1994.github.io/2017/01/02/通过创建新的镜像保存Docker容器状态/</a>
-            <span class="copy-path" data-clipboard-text="From https://zqmath1994.github.io/2017/01/02/通过创建新的镜像保存Docker容器状态/　　By 手抓饼" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/01/02/通过创建新的镜像保存Docker容器状态/" title="通过创建新的镜像保存Docker容器状态">https://zqmath1994.github.io/2017/01/02/通过创建新的镜像保存Docker容器状态/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://zqmath1994.github.io/2017/01/02/通过创建新的镜像保存Docker容器状态/　　作者: 手抓饼" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
-            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
         </p>
     </div>
 
@@ -336,9 +343,9 @@
 </article>
 
     <div id="toc" class="toc-article">
-        <strong class="toc-title">Contents</strong>
+        <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#通过创建新的镜像保存Docker容器状态"><span class="toc-number">1.</span> <span class="toc-text">通过创建新的镜像保存Docker容器状态</span></a></li></ol>
         
     </div>
     <style>
@@ -352,10 +359,10 @@
         }
     </style>
 
-    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
     <script>
-        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
     </script>
 
 
@@ -394,13 +401,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
-        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/01/01/Linux网络编程基础API/" title="Next: Linux高性能服务器编程之Linux网络编程基础API">
+            <a href="/2017/01/01/Linux网络编程基础API/" title="下一篇: Linux高性能服务器编程之Linux网络编程基础API">
                 <i class="fa fa-angle-right"></i>
             </a>
         
@@ -423,14 +430,14 @@
                 2016-2017 手抓饼
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
                 
@@ -439,7 +446,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -472,9 +479,9 @@
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
     // Open in New Window
