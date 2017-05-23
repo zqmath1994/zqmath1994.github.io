@@ -15,12 +15,16 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="陈小鱼的浴缸快来吧">
-<meta property="og:url" content="https://zqmath1994.github.io/archives/index.html">
+<meta name="description" content="在Mac下面利用Docker搭建TensorFlow环境爬过的坑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mac下面利用docker打造TensorFlow环境">
+<meta property="og:url" content="https://zqmath1994.github.io/2017/05/23/mac下面利用docker打造TensorFlow环境/index.html">
 <meta property="og:site_name" content="陈小鱼的浴缸快来吧">
+<meta property="og:description" content="在Mac下面利用Docker搭建TensorFlow环境爬过的坑">
+<meta property="og:updated_time" content="2017-05-23T05:31:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="陈小鱼的浴缸快来吧">
+<meta name="twitter:title" content="mac下面利用docker打造TensorFlow环境">
+<meta name="twitter:description" content="在Mac下面利用Docker搭建TensorFlow环境爬过的坑">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -52,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives | 陈小鱼的浴缸快来吧</title>
+<title>mac下面利用docker打造TensorFlow环境 | 陈小鱼的浴缸快来吧</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -62,8 +66,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
-        isArchive: true,
+        isPost: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -260,217 +264,178 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-mac下面利用docker打造TensorFlow环境" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/05/23/mac下面利用docker打造TensorFlow环境/" class="archive-article-date">
-      <time datetime="2017-05-23T05:15:53.000Z" itemprop="datePublished">05-23</time>
+    <div class="article-meta">
+      <a href="/2017/05/23/mac下面利用docker打造TensorFlow环境/" class="article-date">
+      <time datetime="2017-05-23T05:15:53.000Z" itemprop="datePublished">2017-05-23</time>
 </a>
 
 
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/23/mac下面利用docker打造TensorFlow环境/">mac下面利用docker打造TensorFlow环境</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mac下面利用docker打造TensorFlow环境
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 
-          
+        
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac使用经验/">Mac使用经验</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/云计算/">云计算</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/虚拟化/">虚拟化</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="Mac下面利用Docker打造TensorFlow环境"><a href="#Mac下面利用Docker打造TensorFlow环境" class="headerlink" title="Mac下面利用Docker打造TensorFlow环境"></a>Mac下面利用Docker打造TensorFlow环境</h2><h3 id="需要用到的tools："><a href="#需要用到的tools：" class="headerlink" title="需要用到的tools："></a>需要用到的tools：</h3><ul>
+<li>VirtualBox</li>
+<li>Boot2docker</li>
+<li>Docker<h3 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h3></li>
+</ul>
+<ol>
+<li>安装VirtualBox<br>略过</li>
+<li>安装Boot2docker<br>略过</li>
+<li>设置宿主机到Boot2docker的端口映射<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ VBoxManage modifyvm &quot;boot2docker-vm&quot; --natpf1 &quot;containerssh,tcp,,8888,,8888&quot;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>4.启动Boot2docker<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ boot2docker init</div><div class="line">$ boot2docker up</div></pre></td></tr></table></figure></p>
+<p>5.下载TensorFlow镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull registry.cn-hangzhou.aliyuncs.com/denverdino/tensorflow</div></pre></td></tr></table></figure></p>
+<p>6.安装镜像并设置端口转发<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -it -p 8888:8888 --name tensorflow registry.cn-hangzhou.aliyuncs.com/denverdino/tensorflow</div></pre></td></tr></table></figure></p>
+<p>7.访问<a href="http://localhost:8888" target="_blank" rel="external">http://localhost:8888</a> 使用TensorFlow</p>
+
+      
+    </div>
+    
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/01/04/Lambda模式与大数据/" class="archive-article-date">
-      <time datetime="2017-01-04T14:49:24.000Z" itemprop="datePublished">01-04</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/04/Lambda模式与大数据/">Lambda模式与大数据</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/01/02/Spring基础/" class="archive-article-date">
-      <time datetime="2017-01-02T15:55:02.000Z" itemprop="datePublished">01-02</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/02/Spring基础/">Sping Boot实战之Spring基础</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-EE/">Java EE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li></ul>
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/05/23/mac下面利用docker打造TensorFlow环境/">mac下面利用docker打造TensorFlow环境</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">手抓饼</a></p>
+        <p><span>发布时间:</span>2017-05-23, 13:15:53</p>
+        <p><span>最后更新:</span>2017-05-23, 13:31:44</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/05/23/mac下面利用docker打造TensorFlow环境/" title="mac下面利用docker打造TensorFlow环境">https://zqmath1994.github.io/2017/05/23/mac下面利用docker打造TensorFlow环境/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://zqmath1994.github.io/2017/05/23/mac下面利用docker打造TensorFlow环境/　　作者: 手抓饼" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/01/04/Lambda模式与大数据/">
+                    Lambda模式与大数据
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/01/02/通过创建新的镜像保存Docker容器状态/" class="archive-article-date">
-      <time datetime="2017-01-02T07:42:20.000Z" itemprop="datePublished">01-02</time>
-</a>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mac下面利用Docker打造TensorFlow环境"><span class="toc-number">1.</span> <span class="toc-text">Mac下面利用Docker打造TensorFlow环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#需要用到的tools："><span class="toc-number">1.1.</span> <span class="toc-text">需要用到的tools：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#具体步骤"><span class="toc-number">1.2.</span> <span class="toc-text">具体步骤</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
         </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/02/通过创建新的镜像保存Docker容器状态/">通过创建新的镜像保存Docker容器状态</a>
-    </h1>
-  
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"mac下面利用docker打造TensorFlow环境　| 陈小鱼的浴缸快来吧　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
 
-        <div class="article-info info-on-archive">
-          
+    
+</div>
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/云计算/">云计算</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/虚拟化/">虚拟化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/运维/">运维</a></li></ul>
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/01/04/Lambda模式与大数据/" title="下一篇: Lambda模式与大数据">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/01/01/Linux网络编程基础API/" class="archive-article-date">
-      <time datetime="2017-01-01T14:43:29.000Z" itemprop="datePublished">01-01</time>
-</a>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/05/23/mac下面利用docker打造TensorFlow环境/">mac下面利用docker打造TensorFlow环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/04/Lambda模式与大数据/">Lambda模式与大数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/Spring基础/">Sping Boot实战之Spring基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/02/通过创建新的镜像保存Docker容器状态/">通过创建新的镜像保存Docker容器状态</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/Linux网络编程基础API/">Linux高性能服务器编程之Linux网络编程基础API</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/01/后台架构剖析-md/">后台架构剖析</a></li></ul>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/01/Linux网络编程基础API/">Linux高性能服务器编程之Linux网络编程基础API</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux网络编程/">Linux网络编程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游双/">游双</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/阅读笔记/">阅读笔记</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/01/01/后台架构剖析-md/" class="archive-article-date">
-      <time datetime="2017-01-01T12:47:15.000Z" itemprop="datePublished">01-01</time>
-</a>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/01/后台架构剖析-md/">后台架构剖析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/后台/">后台</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学/">大学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/整理/">整理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/架构/">架构</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">

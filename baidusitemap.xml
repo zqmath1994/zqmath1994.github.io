@@ -4,6 +4,56 @@
 
     
   <url>
+    <loc>https://zqmath1994.github.io/2017/05/23/mac%E4%B8%8B%E9%9D%A2%E5%88%A9%E7%94%A8docker%E6%89%93%E9%80%A0TensorFlow%E7%8E%AF%E5%A2%83/</loc>
+    <lastmod>2017-05-23T05:31:44.000Z</lastmod>
+    <data>
+        <display>
+        <title>mac下面利用docker打造TensorFlow环境</title>
+        <pubTime>2017-05-23T05:15:53.000Z</pubTime>
+        
+        <tag>Docker</tag>
+         
+        <tag>虚拟化</tag>
+         
+        <tag>云计算</tag>
+         
+        <tag>深度学习</tag>
+         
+        <tag>机器学习</tag>
+         
+        <tag>Mac使用经验</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://zqmath1994.github.io/2017/01/01/%E5%90%8E%E5%8F%B0%E6%9E%B6%E6%9E%84%E5%89%96%E6%9E%90-md/</loc>
+    <lastmod>2017-05-23T05:29:08.000Z</lastmod>
+    <data>
+        <display>
+        <title>后台架构剖析</title>
+        <pubTime>2017-01-01T12:47:15.000Z</pubTime>
+        
+        <tag>后台</tag>
+         
+        <tag>架构</tag>
+         
+        <tag>大学</tag>
+         
+        <tag>整理</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://zqmath1994.github.io/2017/01/04/Lambda%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%A4%A7%E6%95%B0%E6%8D%AE/</loc>
     <lastmod>2017-01-04T14:49:24.000Z</lastmod>
     <data>
@@ -49,11 +99,11 @@
         
         <tag>Docker</tag>
          
-        <tag>运维</tag>
-         
         <tag>虚拟化</tag>
          
         <tag>云计算</tag>
+         
+        <tag>运维</tag>
          
          
            
@@ -75,29 +125,6 @@
         <tag>Linux网络编程</tag>
          
         <tag>游双</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://zqmath1994.github.io/2017/01/01/%E5%90%8E%E5%8F%B0%E6%9E%B6%E6%9E%84%E5%89%96%E6%9E%90-md/</loc>
-    <lastmod>2017-01-01T16:33:12.000Z</lastmod>
-    <data>
-        <display>
-        <title>后台架构剖析</title>
-        <pubTime>2017-01-01T12:47:15.000Z</pubTime>
-        
-        <tag>后台</tag>
-         
-        <tag>架构</tag>
-         
-        <tag>大学</tag>
-         
-        <tag>整理</tag>
          
          
            
